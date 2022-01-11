@@ -10,15 +10,27 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  void getData() async {
+  void getTime() async {
     try {
-      Response response =
-          await get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-      Map jsondata = jsonDecode(response.body) as Map;
-      print(jsondata);
-      print(jsondata['id']);
-      print(jsondata['userId']);
-      print(jsondata['title']);
+      //make request
+      Response response = await get(
+          Uri.parse('http://worldtimeapi.org/api/timezone/Asia/Kathmandu'));
+      Map timedata = jsonDecode(response.body) as Map;
+
+      //get properties from data
+
+      String datetime = timedata['datetime'];
+      String timezone = timedata['timezone'];
+      int week_no = timedata['day_of_week'];
+      int day_of_year = timedata['day_of_year'];
+
+      // print("..............................................");
+
+      print(datetime);
+      print(timezone);
+      print(week_no);
+      print(day_of_year);
+      // print(timedata);
     } on Exception catch (e) {
       print(e);
     }
@@ -27,7 +39,7 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
 
   @override
