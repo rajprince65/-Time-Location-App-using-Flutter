@@ -20,17 +20,18 @@ class _LoadingState extends State<Loading> {
       //get properties from data
 
       String datetime = timedata['datetime'];
-      String timezone = timedata['timezone'];
-      int week_no = timedata['day_of_week'];
-      int day_of_year = timedata['day_of_year'];
+      String offset = timedata['utc_offset'];
+      String houroffset = timedata['utc_offset'].substring(1, 3);
+      String minuteoffset = timedata['utc_offset'].substring(4, 6);
 
-      // print("..............................................");
+      // print("Hour $houroffset");
+      //print("Minute $minuteoffset");
 
-      print(datetime);
-      print(timezone);
-      print(week_no);
-      print(day_of_year);
-      // print(timedata);
+      DateTime datetimeobj = DateTime.parse(datetime);
+      datetimeobj = datetimeobj.add(Duration(
+          hours: int.parse(houroffset), minutes: int.parse(minuteoffset)));
+
+      print("datetimeobj..$datetimeobj");
     } on Exception catch (e) {
       print(e);
     }
