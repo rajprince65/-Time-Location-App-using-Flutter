@@ -15,15 +15,19 @@ class _LoadingState extends State<Loading> {
     WorldTime instance = WorldTime(
         flag: 'kathmandu.png', location: 'Kathmandu', url: 'Asia/Kathmandu');
     await instance.getTime();
-    // print("flag:${instance.flag}");
-    // print("location:${instance.location}");
-    // print("time:${instance.time}");
-    Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'flag': instance.flag,
-      'location': instance.location,
-      'time': instance.time,
-      'isDayTime': instance.isDayTime,
-    });
+    //print("flag:${instance.flag}");
+    //print("location:${instance.location}");
+    //print("time:${instance.time}");
+    Navigator.pushReplacementNamed(
+      context,
+      '/home',
+      arguments: {
+        'flag': instance.flag,
+        'location': instance.location,
+        'time': instance.time,
+        'isDayTime': instance.isDayTime,
+      },
+    );
   }
 
   @override
